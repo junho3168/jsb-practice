@@ -1,5 +1,7 @@
 package com.mysite.sbb.question;
-
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.domain.Sort;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +21,8 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     public Page<Question> getList(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10);
         return this.questionRepository.findAll(pageable);
     }
