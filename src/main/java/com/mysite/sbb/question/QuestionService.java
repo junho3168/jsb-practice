@@ -1,12 +1,15 @@
 package com.mysite.sbb.question;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import com.mysite.sbb.user.SiteUser;
 import org.springframework.data.domain.Sort;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -47,4 +50,10 @@ public class QuestionService {
         this.questionRepository.save(q);
     }
 
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyDate(LocalDateTime.now());
+        this.questionRepository.save(question);
+    }
 }
